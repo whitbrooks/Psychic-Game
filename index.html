@@ -11,22 +11,25 @@
 
 <h1>The Psychic Game</h1>
 
-<div id="instructions">
-    <p>Guess what letter I'm thinking of:</p>
+<div id="game">
+    <p>Guess what letter I'm thinking of.</p>
 </div>
 
-<p>Wins:</p>
-<p>Losses:</p>
-<p>Guesses left:</p>
-<p>Guesses so far:</p>
 
 <script type="text/javascript">
 
 var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
 var wins = 0;
 var losses = 0;
 var guesses_left = 9;
 var guesses_so_far = "";
+
+var html = 
+"<p>Guess what letter I'm thinking of.</p>" + 
+"<p>Wins: " + wins + "</p>" + 
+"<p>Guesses left: " + guesses_left + "</p>" +
+"<p>Guesses so far: " + guesses_so_far + "</p>" 
 
 document.onkeyup = function() {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
@@ -41,11 +44,11 @@ document.onkeyup = function() {
         wins++;
         alert("you win!");
     } else {
-            guesses_left--;
-            guesses_so_far = 
+            guesses_left--; 
             alert("try again!");
         }
 
+    document.querySelector('#game').innerHTML = html;
 
 
 }
