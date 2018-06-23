@@ -22,18 +22,12 @@ var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","
 
 var wins = 0;
 var losses = 0;
-var guesses_left = 9;
-var guesses_so_far = "";
-
-var html = 
-"<p>Guess what letter I'm thinking of.</p>" + 
-"<p>Wins: " + wins + "</p>" + 
-"<p>Guesses left: " + guesses_left + "</p>" +
-"<p>Guesses so far: " + guesses_so_far + "</p>" 
+var guesses_left = 10;
+var guesses_so_far = [];
 
 document.onkeyup = function() {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
+    guesses_so_far.push(userGuess);
     console.log(userGuess);
 
     var psychicChoice = options[Math.floor(Math.random()*options.length)];
@@ -42,12 +36,18 @@ document.onkeyup = function() {
     
     if (userGuess==psychicChoice) {
         wins++;
-        alert("you win!");
+        console.log(wins);
     } else {
             guesses_left--; 
-            alert("try again!");
+            console.log(guesses_left);
         }
 
+    var html = 
+    "<p>Guess what letter I'm thinking of.</p>" + 
+    "<p>Wins: " + wins + "</p>" + 
+    "<p>Guesses left: " + guesses_left + "</p>" +
+    "<p>Guesses so far: " + guesses_so_far.join() + "</p>"  
+    
     document.querySelector('#game').innerHTML = html;
 
 
