@@ -21,14 +21,27 @@
 
 var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 
+var psychicChoice = options[math.floor(math.random()*options.length)];
+
+var wins = 0;
+var losses = 0;
+var guesses_left = 9;
+var guesses_so_far = "";
+
 document.onkeyup = function() {
-    var guesses_so_far = String.fromCharCode(event.keyCode).
-    toLocaleLowerCase();
+    var userGuess = String.fromCharCode(event.keyCode).toLocaleLowerCase();
+    
+    if (userGuess==psychicChoice) {
+        wins++;
+        alert("you win!");
+    } else {
+            guesses_left--;
+            guesses_so_far = 
+            alert("try again!");
+        }
 
-,    }
 
-
-
+}
 </script>
 
 </body>
