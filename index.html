@@ -3,7 +3,7 @@
 <head>
 
     <title>Psychic Game</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> -->
     <!-- <script src="assets/js/game.js"></script> -->
 
 </head>
@@ -11,7 +11,10 @@
 
 <h1>The Psychic Game</h1>
 
-<p>Guess what letter I'm thinking of.</p>
+<div id="instructions">
+    <p>Guess what letter I'm thinking of:</p>
+</div>
+
 <p>Wins:</p>
 <p>Losses:</p>
 <p>Guesses left:</p>
@@ -19,17 +22,20 @@
 
 <script type="text/javascript">
 
-var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
-
-var psychicChoice = options[math.floor(math.random()*options.length)];
-
+var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var wins = 0;
 var losses = 0;
 var guesses_left = 9;
 var guesses_so_far = "";
 
 document.onkeyup = function() {
-    var userGuess = String.fromCharCode(event.keyCode).toLocaleLowerCase();
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+
+    console.log(userGuess);
+
+    var psychicChoice = options[Math.floor(Math.random()*options.length)];
+
+    console.log(psychicChoice);
     
     if (userGuess==psychicChoice) {
         wins++;
@@ -39,6 +45,7 @@ document.onkeyup = function() {
             guesses_so_far = 
             alert("try again!");
         }
+
 
 
 }
