@@ -50,11 +50,13 @@ document.onkeyup = function() {
     // end game when guesses left reaches zero
     if (guesses_left==0) {
         alert("Game over! Try again.");
-        
-        // reset game
-       
+        wins = 0;
+        losses = 0;
+        guesses_left = 10;
+        guesses_so_far = [];    
     }
     
+
     // update html
     var html = 
     "<p>Guess what letter I'm thinking of.</p>" + 
