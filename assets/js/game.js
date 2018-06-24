@@ -1,48 +1,49 @@
-// Variables
+// VARIABLES
 
-var wins = 0
-var losses = 0
-var guesses_left = 9
-var guesses_so_far = "" 
+var options = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var wins = 0;
+var losses = 0;
+var guesses_left = 10;
+var guesses_so_far = [];
 
-// Define Functions
+// FUNCTIONS
 
-$(document).ready(function() {
+// user clicks key to start game
+document.onkeyup = function() {
+    var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    guesses_so_far.push(userGuess);
+    console.log(userGuess);
 
-    document.onkeyup = function() {
-        var guesses_so_far = String.fromCharCode(event.keyCode).
-        toLocaleLowerCase();
-
-        console.log(guesses_so_far);
+    // computer selects letter
+    var psychicChoice = options[Math.floor(Math.random()*options.length)];
+    console.log(psychicChoice);
+    
+    // compare user guess to computer selection and update wins and guesses left
+    if (userGuess==psychicChoice) {
+        wins++;
+        console.log(wins);
+    } else {
+            guesses_left--; 
+            console.log(guesses_left);
         }
 
-    // $("#wins").on("click", function() {
-    //     ;
-    //   });
+    // end game when guesses left reaches zero
+    if (guesses_left==0) {
+        alert("Game over! Try again.");
+        wins = 0;
+        losses = 0;
+        guesses_left = 10;
+        guesses_so_far = [];    
+    }
+    
 
-    // $("#random-button").on("click", function() {
+    // update html
+    var html = 
+    "<p>Guess what letter I'm thinking of.</p>" + 
+    "<p>Wins: " + wins + "</p>" + 
+    "<p>Guesses left: " + guesses_left + "</p>" +
+    "<p>Guesses so far: " + guesses_so_far.join() + "</p>"  
+    
+    document.querySelector('#game').innerHTML = html;
 
-
-    // var random = Math.floor(Math.random() * 1000) + 1;
-
-    // $("#random-number").text(random);
-
-
-});
-
-// user makes a guess
-
-
-// computer selects random letter
-// capture selections
-// compare user and computer selections 
-// Display result to user 
-
-
-// if user guess is correct, wins go up by 1
-// if user guess is incorrect, guess is recorded and guesses left goes down by 1
-// if user guesses incorrectly 9 times, losses go up by 1, and guesses so far is cleared
-
-// Call Functions
-
-
+    }
