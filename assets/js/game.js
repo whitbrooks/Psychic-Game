@@ -8,23 +8,28 @@ var guesses_so_far = [];
 
 // FUNCTIONS
 
+// computer selects letter
+var psychicChoice = options[Math.floor(Math.random()*options.length)];
+console.log(psychicChoice);
+
 // user clicks key to start game
 document.onkeyup = function() {
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
     guesses_so_far.push(userGuess);
     console.log(userGuess);
 
-    // computer selects letter
-    var psychicChoice = options[Math.floor(Math.random()*options.length)];
-    console.log(psychicChoice);
-    
     // compare user guess to computer selection and update wins and guesses left
     if (userGuess==psychicChoice) {
         wins++;
+        guesses_left = 10;
+        guesses_so_far = [];    
+        psychicChoice = options[Math.floor(Math.random()*options.length)];
         console.log(wins);
+        console.log(psychicChoice);
     } else {
             guesses_left--; 
             console.log(guesses_left);
+            console.log(psychicChoice);
         }
 
     // end game when guesses left reaches zero
@@ -34,6 +39,9 @@ document.onkeyup = function() {
         losses = 0;
         guesses_left = 10;
         guesses_so_far = [];    
+        psychicChoice = options[Math.floor(Math.random()*options.length)];
+        console.log(psychicChoice);
+
     }
     
 
